@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fancy Bathroom Concept | Onitsha</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #8a6f2e;
+    --dark: #0a0a0a;
+    --dark2: #111111;
+    --dark3: #181818;
+    --dark4: #222222;
+    --light: #f5f0e8;
+    --light2: #e8e0d0;
+    --text-muted: #888880;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--light); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body { cursor: none; }
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--gold-dim); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); }
+
+  /* Enhanced Navbar */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 60px; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); transition: background 0.4s, padding 0.4s; }
+  nav.scrolled { background: rgba(10,10,10,0.96); backdrop-filter: blur(20px); padding: 18px 60px; border-bottom: 1px solid rgba(201,168,76,0.15); }
+  .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 3px; color: var(--gold-light); text-transform: uppercase; text-decoration: none; }
+  .nav-logo span { font-style: italic; color: var(--light); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { color: var(--light2); text-decoration: none; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400; position: relative; transition: color 0.3s; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-cta { background: transparent; border: 1px solid var(--gold-dim); color: var(--gold-light); padding: 10px 26px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: none; transition: all 0.3s; text-decoration: none; }
+  .nav-cta:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .nav-admin-btn { background: var(--dark3); border: 1px solid var(--gold-dim); color: var(--gold-light); padding: 10px 16px; font-size: 12px; cursor: pointer; transition: all 0.3s; border-radius: 4px; }
+  .nav-admin-btn:hover { background: var(--gold-dim); color: var(--light); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--gold-light); transition: 0.3s; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 60px 80px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%); }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .hero-badge::before, .hero-badge::after { content: ''; height: 1px; background: var(--gold-dim); width: 30px; }
+  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 0.95; letter-spacing: -1px; margin-bottom: 28px; opacity: 0; animation: fadeUp 1s ease forwards 0.5s; }
+  .hero-h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub { font-size: 14px; line-height: 1.8; color: var(--text-muted); letter-spacing: 0.5px; max-width: 440px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.9s ease forwards 0.7s; }
+  .hero-actions { display: flex; gap: 20px; align-items: center; opacity: 0; animation: fadeUp 0.9s ease forwards 0.9s; }
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 16px 40px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.3s; cursor: none; border: none; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,0.3); }
+  .btn-ghost { color: var(--light2); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.3s; cursor: none; }
+  .btn-ghost:hover { color: var(--gold-light); }
+  .btn-ghost span { transition: transform 0.3s; font-size: 16px; }
+  .btn-ghost:hover span { transform: translateX(5px); }
+  .hero-stats { position: absolute; right: 60px; bottom: 80px; z-index: 2; display: flex; flex-direction: column; gap: 32px; opacity: 0; animation: fadeIn 1s ease forwards 1.2s; }
+  .stat { text-align: right; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: var(--gold-light); line-height: 1; }
+  .stat-label { font-size: 10px; letter-spacing: 2.5px; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  .marquee-wrap { overflow: hidden; border-top: 1px solid rgba(201,168,76,0.15); border-bottom: 1px solid rgba(201,168,76,0.15); padding: 18px 0; background: var(--dark2); }
+  .marquee-inner { display: flex; white-space: nowrap; animation: marquee 22s linear infinite; }
+  .marquee-inner span { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-dim); padding: 0 50px; }
+  .marquee-inner span.dot { color: var(--gold); padding: 0; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .section { padding: 120px 60px; }
+  .sec-header { margin-bottom: 70px; }
+  .sec-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: block; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 58px); font-weight: 300; line-height: 1.1; }
+  .sec-title em { font-style: italic; color: var(--gold-light); }
+  .sec-line { width: 60px; height: 1px; background: var(--gold-dim); margin-top: 24px; }
+
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(201,168,76,0.08); }
+  .product-card { background: var(--dark3); padding: 50px 40px; position: relative; overflow: hidden; transition: background 0.4s; cursor: none; }
+  .product-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s; }
+  .product-card:hover { background: var(--dark4); }
+  .product-card:hover::before { opacity: 1; }
+  .product-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .product-img-wrap { aspect-ratio: 1; overflow: hidden; margin-bottom: 28px; background: var(--dark2); position: relative; }
+  .product-card.featured .product-img-wrap { aspect-ratio: unset; height: 100%; min-height: 300px; margin-bottom: 0; }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) contrast(1.05); transition: transform 0.6s ease, filter 0.4s; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.04); filter: brightness(0.95) contrast(1.05); }
+  .product-number { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--gold-dim); letter-spacing: 3px; margin-bottom: 10px; display: block; }
+  .product-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; line-height: 1.2; margin-bottom: 12px; }
+  .product-desc { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin-bottom: 24px; }
+  .product-tag { display: inline-block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-dim); padding: 6px 14px; margin-right: 8px; margin-bottom: 8px; }
+  .product-arrow { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dim); margin-top: 20px; transition: color 0.3s, gap 0.3s; }
+  .product-card:hover .product-arrow { color: var(--gold); gap: 14px; }
+  .product-edit-btn { position: absolute; top: 10px; right: 10px; background: rgba(201,168,76,0.2); border: 1px solid var(--gold-dim); color: var(--gold-light); padding: 6px 10px; font-size: 10px; cursor: pointer; border-radius: 4px; transition: all 0.3s; opacity: 0; }
+  .product-card:hover .product-edit-btn { opacity: 1; }
+  .product-edit-btn:hover { background: var(--gold); color: var(--dark); }
+
+  .about { background: var(--dark2); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .about-visual { position: relative; height: 480px; }
+  .about-box { position: absolute; background: var(--dark3); border: 1px solid rgba(201,168,76,0.2); }
+  .about-box:nth-child(1) { top:0; left:0; right:60px; bottom:60px; }
+  .about-box:nth-child(2) { top:50px; left:50px; right:0; bottom:0; background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03)); border-color: var(--gold-dim); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; z-index: 2; }
+  .big-num { font-family: 'Cormorant Garamond', serif; font-size: 80px; font-weight: 300; color: var(--gold-light); line-height: 1; }
+  .big-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+  .about-text p { font-size: 15px; line-height: 1.9; color: var(--text-muted); margin-bottom: 20px; }
+  .about-features { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .af-item { display: flex; align-items: flex-start; gap: 16px; padding: 20px; border-left: 2px solid rgba(201,168,76,0.2); transition: border-color 0.3s; }
+  .af-item:hover { border-color: var(--gold); }
+  .af-icon { color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .af-item h4 { font-size: 13px; letter-spacing: 1px; margin-bottom: 4px; font-weight: 500; }
+  .af-item p { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+  .rating-section { background: var(--dark3); text-align: center; padding: 80px 60px; }
+  .stars { color: var(--gold); font-size: 28px; letter-spacing: 6px; margin-bottom: 16px; }
+  .rating-num { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: var(--gold-light); line-height: 1; }
+  .rating-sub { font-size: 12px; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; margin-top: 8px; }
+
+  .contact { background: var(--dark); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .contact-info { padding-right: 40px; border-right: 1px solid rgba(201,168,76,0.1); }
+  .contact-item { display: flex; flex-direction: column; gap: 6px; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .contact-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dim); }
+  .contact-value { font-size: 16px; color: var(--light); }
+  .contact-value a { color: var(--gold-light); text-decoration: none; transition: color 0.3s; }
+  .contact-value a:hover { color: var(--gold); }
+  .whatsapp-btn { margin-top: 40px; display: inline-flex; align-items: center; gap: 14px; background: #25D366; color: white; padding: 18px 36px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: all 0.3s; cursor: none; border: none; }
+  .whatsapp-btn:hover { background: #1dbe58; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
+  .form-group { margin-bottom: 28px; }
+  .form-group label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 10px; }
+  .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--dark3); border: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(201,168,76,0.3); color: var(--light); font-family: 'Jost', sans-serif; font-size: 14px; padding: 14px 18px; outline: none; transition: border-color 0.3s; appearance: none; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group textarea { resize: none; height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  footer { background: var(--dark2); border-top: 1px solid rgba(201,168,76,0.15); padding: 50px 60px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 3px; color: var(--gold-light); }
+  .footer-copy { font-size: 11px; letter-spacing: 1px; color: var(--text-muted); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold-light); }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.35s; }
+
+  /* Admin Panel Styles */
+  .admin-panel { position: fixed; right: -400px; top: 0; width: 400px; height: 100vh; background: var(--dark2); border-left: 1px solid var(--gold-dim); z-index: 1000; transition: right 0.3s ease; overflow-y: auto; }
+  .admin-panel.open { right: 0; }
+  .admin-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--gold-dim); position: sticky; top: 0; background: var(--dark3); }
+  .admin-header h3 { font-size: 16px; color: var(--gold-light); }
+  .admin-close { background: none; border: none; color: var(--gold-light); font-size: 24px; cursor: pointer; }
+  .admin-content { padding: 20px; }
+  .admin-section { margin-bottom: 30px; }
+  .admin-section h4 { color: var(--gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+  .image-item { background: var(--dark3); padding: 15px; margin-bottom: 10px; border: 1px solid rgba(201,168,76,0.2); border-radius: 4px; }
+  .image-item-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .image-item-name { color: var(--light); font-size: 13px; }
+  .image-item-delete { background: #dc3545; border: none; color: white; padding: 4px 10px; font-size: 11px; cursor: pointer; border-radius: 3px; transition: background 0.3s; }
+  .image-item-delete:hover { background: #c82333; }
+  .image-item-preview { width: 100%; height: 150px; background: var(--dark); border-radius: 4px; object-fit: cover; margin-bottom: 10px; }
+  .image-upload { background: var(--dark3); padding: 15px; border: 2px dashed var(--gold-dim); border-radius: 4px; text-align: center; }
+  .image-upload input { display: none; }
+  .image-upload label { display: block; cursor: pointer; color: var(--gold-light); font-size: 12px; }
+  .image-upload label:hover { color: var(--gold); }
+  .admin-btn { background: var(--gold); color: var(--dark); border: none; padding: 10px 20px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 4px; width: 100%; margin-top: 10px; transition: all 0.3s; }
+  .admin-btn:hover { background: var(--gold-light); }
+  .admin-input { width: 100%; background: var(--dark3); border: 1px solid var(--gold-dim); color: var(--light); padding: 8px 12px; font-size: 12px; margin-bottom: 10px; border-radius: 4px; }
+  .admin-input:focus { outline: none; border-color: var(--gold); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 120px 24px 60px; }
+    .hero-stats { display: none; }
+    .section { padding: 80px 24px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .product-card.featured .product-img-wrap { min-height: 220px; height: 220px; margin-bottom: 28px; }
+    .about-inner { grid-template-columns: 1fr; gap: 50px; }
+    .about-visual { height: 300px; }
+    .big-num { font-size: 56px; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .contact-info { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(201,168,76,0.1); padding-bottom: 40px; margin-bottom: 40px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 40px 24px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .admin-panel { width: 100%; right: -100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Enhanced Navbar -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">Fancy <span>Bathroom</span> Concept</a>
+    <div class="nav-links">
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://wa.me/2348158719600" target="_blank" class="nav-cta">WhatsApp Us</a>
+      <button class="nav-admin-btn" onclick="toggleAdminPanel()">
+        <i class="fas fa-cog"></i> Admin
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu(this)">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Admin Panel -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-header">
+    <h3>Image Manager</h3>
+    <button class="admin-close" onclick="toggleAdminPanel()">×</button>
+  </div>
+  <div class="admin-content">
+    <div class="admin-section">
+      <h4>Add New Product Image</h4>
+      <div class="image-upload">
+        <label for="imageUpload">
+          <i class="fas fa-cloud-upload-alt"></i> Click to Upload
+        </label>
+        <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+      </div>
+      <input type="text" class="admin-input" id="imageName" placeholder="Product Name">
+      <input type="text" class="admin-input" id="imageUrl" placeholder="Image URL">
+      <button class="admin-btn" onclick="addProductImage()">Add Image</button>
+    </div>
+
+    <div class="admin-section">
+      <h4>Manage Product Images</h4>
+      <div id="imagesList"></div>
+    </div>
+  </div>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">★ 4.9 Rating &nbsp;·&nbsp; Onitsha's Premier Store</div>
+    <h1 class="hero-h1">Redefine Your<br><em>Bathroom</em><br>Space.</h1>
+    <p class="hero-sub">Premium fittings, smart LED mirrors, luxury faucets and complete shower systems — the finest bath concepts delivered to your doorstep in Onitsha.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Explore Products</a>
+      <a href="https://wa.me/2348158719600" target="_blank" class="btn-ghost">Chat on WhatsApp <span>→</span></a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Customer Rating</div></div>
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Happy Clients</div></div>
+    <div class="stat"><div class="stat-num">Open</div><div class="stat-label">Mon–Sat · 8–6pm</div></div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>LED Smart Mirrors</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Rainfall Shower Systems</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Sensor Waterfall Faucets</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Multi-Function Kitchen Sinks</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Premium Bath Fittings</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Complete Shower Sets</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>LED Smart Mirrors</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Rainfall Shower Systems</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Sensor Waterfall Faucets</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Multi-Function Kitchen Sinks</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Premium Bath Fittings</span><span class="dot">&nbsp;◆&nbsp;</span>
+    <span>Complete Shower Sets</span><span class="dot">&nbsp;◆&nbsp;</span>
+  </div>
+</div>
+
+<section class="section" id="products">
+  <div class="sec-header reveal">
+    <span class="sec-tag">Our Collection</span>
+    <h2 class="sec-title">Curated for the <em>Discerning</em> Home</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="products-grid" id="productsGrid">
+    <!-- Products will be dynamically loaded here -->
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-box"></div>
+      <div class="about-box">
+        <div class="big-num">4.9</div>
+        <div class="big-label">★ Customer Rating</div>
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-2">
+      <span class="sec-tag">Who We Are</span>
+      <h2 class="sec-title">Onitsha's <em>Finest</em><br>Bath Destination</h2>
+      <div class="sec-line"></div>
+      <p style="margin-top:32px;">Located at Shop A6, Prince of Peace Line, Bridge Head Market, Onitsha — Fancy Bathroom Concept brings globally-sourced, premium bathroom fittings to the heart of Anambra State.</p>
+      <p>From smart LED mirrors and touchless sensor faucets to full rainfall shower systems, we stock everything needed to transform a bathroom into a luxury retreat — at accessible prices.</p>
+      <div class="about-features">
+        <div class="af-item">
+          <div class="af-icon">◈</div>
+          <div><h4>Premium Quality</h4><p>Every product is hand-selected for build quality, finish, and long-term durability.</p></div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon">◈</div>
+          <div><h4>Expert Guidance</h4><p>Our team helps you choose the perfect fittings for your space and budget.</p></div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon">◈</div>
+          <div><h4>Instant Response</h4><p>Message us on WhatsApp — get answers, prices and product photos in minutes.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rating-section reveal">
+  <div class="stars">★ ★ ★ ★ ★</div>
+  <div class="rating-num">4.9</div>
+  <div class="rating-sub">Out of 5 &nbsp;·&nbsp; Verified Customer Reviews &nbsp;·&nbsp; Onitsha's Most Trusted Bath Store</div>
+</div>
+
+<section class="section contact" id="contact">
+  <div class="sec-header reveal">
+    <span class="sec-tag">Get In Touch</span>
+    <h2 class="sec-title">Visit Us or <em>Chat</em> Online</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Shop A6, Prince of Peace Line<br>Bridge Head Market, Onitsha, Anambra</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone / WhatsApp</span>
+        <span class="contact-value"><a href="tel:+2348158719600">0815 871 9600</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Opening Hours</span>
+        <span class="contact-value">Monday – Saturday &nbsp;·&nbsp; 8:00 am – 6:00 pm</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Rating</span>
+        <span class="contact-value" style="color:var(--gold);">★★★★★ &nbsp; 4.9 / 5.0 &nbsp; Excellent</span>
+      </div>
+      <a href="https://wa.me/2348158719600?text=Hello%20Fancy%20Bathroom%20Concept%2C%20I%20am%20interested%20in%20your%20products." target="_blank" class="whatsapp-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp Now
+      </a>
+    </div>
+    <div class="contact-form reveal reveal-delay-2">
+      <form onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="080XXXXXXXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product Interest</label>
+          <select>
+            <option value="">Select a product category</option>
+            <option>LED Smart Mirror</option>
+            <option>Rainfall Shower System</option>
+            <option>Sensor / Waterfall Faucet</option>
+            <option>Multi-Function Kitchen Sink (7545B)</option>
+            <option>Complete Shower Set</option>
+            <option>Other / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your bathroom project or ask about pricing…"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;text-align:center;border:none;cursor:pointer;">Send Enquiry via WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Fancy Bathroom Concept</div>
+  <div class="footer-copy">© 2026 · Bridge Head Market, Onitsha · All rights reserved</div>
+  <div class="footer-links">
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="https://wa.me/2348158719600" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  // Default products data
+  let products = [
+    {
+      id: 1,
+      number: '01 / Mirror',
+      name: 'Cloud-Shape LED Backlit Mirror',
+      description: 'Organic irregular silhouette with warm-white edge lighting. Touch-sensor on/off. Creates a dramatic vanity focal point in any bathroom or bedroom.',
+      tags: ['LED Backlit', 'Touch Sensor', 'Warm White'],
+      image: 'https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=700&q=80',
+      featured: true
+    },
+    {
+      id: 2,
+      number: '02 / Faucet',
+      name: 'Matte Black Waterfall Sensor Tap',
+      description: 'Touchless infrared sensor with flat-top waterfall flow. Matte black stainless finish — modern, hygienic and effortlessly stylish.',
+      tags: ['Auto Sensor', 'Matte Black'],
+      image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80',
+      featured: false
+    },
+    {
+      id: 3,
+      number: '03 / Shower',
+      name: 'Chrome Rainfall Shower System',
+      description: 'Square overhead rain head, adjustable handheld spray, wall-mount mixer. Polished chrome — timeless luxury for your shower space.',
+      tags: ['Rain Head', 'Handheld', 'Chrome'],
+      image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80',
+      featured: false
+    },
+    {
+      id: 4,
+      number: '04 / Sink',
+      name: 'Workstation Kitchen Sink 7545B',
+      description: 'Gunmetal nano coating. Built-in chopping board, colander, and pull-out faucet included. Model 7545B — the complete kitchen upgrade.',
+      tags: ['Nano-coated', 'Model 7545B'],
+      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
+      featured: false
+    },
+    {
+      id: 5,
+      number: '05 / Full Set',
+      name: 'Complete Shower Installation Set',
+      description: 'Everything included — overhead panel, handheld head, mixer valve, 150cm shower hose and chrome support rods. Ready to install.',
+      tags: ['Full Kit', '150cm Hose'],
+      image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80',
+      featured: false
+    }
+  ];
+
+  // Load products from localStorage
+  function loadProducts() {
+    const saved = localStorage.getItem('bathroomplProducts');
+    if (saved) {
+      products = JSON.parse(saved);
+    }
+    renderProducts();
+    renderImagesList();
+  }
+
+  // Save products to localStorage
+  function saveProducts() {
+    localStorage.setItem('bathroomplProducts', JSON.stringify(products));
+  }
+
+  // Render products grid
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = '';
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = `product-card ${product.featured ? 'featured' : ''} reveal`;
+      card.innerHTML = `
+        <button class="product-edit-btn" onclick="editProductImage(${product.id})">
+          <i class="fas fa-edit"></i> Edit
+        </button>
+        <div class="product-img-wrap">
+          <img src="${product.image}" alt="${product.name}">
+        </div>
+        <div class="product-info">
+          <span class="product-number">${product.number}</span>
+          <h3 class="product-name">${product.name}</h3>
+          <p class="product-desc">${product.description}</p>
+          <div>
+            ${product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('')}
+          </div>
+          <div class="product-arrow" onclick="enquire('${product.name}')">Enquire Now →</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // Render images list in admin panel
+  function renderImagesList() {
+    const list = document.getElementById('imagesList');
+    list.innerHTML = '';
+    products.forEach(product => {
+      const item = document.createElement('div');
+      item.className = 'image-item';
+      item.innerHTML = `
+        <div class="image-item-info">
+          <span class="image-item-name">${product.name}</span>
+          <button class="image-item-delete" onclick="deleteProduct(${product.id})">Delete</button>
+        </div>
+        <img src="${product.image}" alt="${product.name}" class="image-item-preview">
+      `;
+      list.appendChild(item);
+    });
+  }
+
+  // Handle image upload
+  function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('imageUrl').value = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  // Add product image
+  function addProductImage() {
+    const name = document.getElementById('imageName').value;
+    const url = document.getElementById('imageUrl').value;
+    
+    if (!name || !url) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    const newProduct = {
+      id: Math.max(...products.map(p => p.id), 0) + 1,
+      number: `${String(products.length + 1).padStart(2, '0')} / Product`,
+      name: name,
+      description: 'Premium product with exceptional quality and design.',
+      tags: ['Premium', 'Featured'],
+      image: url,
+      featured: false
+    };
+
+    products.push(newProduct);
+    saveProducts();
+    renderProducts();
+    renderImagesList();
+    
+    document.getElementById('imageName').value = '';
+    document.getElementById('imageUrl').value = '';
+    document.getElementById('imageUpload').value = '';
+    
+    alert('Product added successfully!');
+  }
+
+  // Edit product image
+  function editProductImage(id) {
+    const product = products.find(p => p.id === id);
+    if (product) {
+      const newUrl = prompt('Enter new image URL:', product.image);
+      if (newUrl) {
+        product.image = newUrl;
+        saveProducts();
+        renderProducts();
+        renderImagesList();
+      }
+    }
+  }
+
+  // Delete product
+  function deleteProduct(id) {
+    if (confirm('Are you sure you want to delete this product?')) {
+      products = products.filter(p => p.id !== id);
+      saveProducts();
+      renderProducts();
+      renderImagesList();
+    }
+  }
+
+  // Toggle admin panel
+  function toggleAdminPanel() {
+    document.getElementById('adminPanel').classList.toggle('open');
+  }
+
+  // Toggle menu
+  function toggleMenu(el) {
+    el.classList.toggle('active');
+  }
+
+  // Cursor
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function tick(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+
+  // Nav scroll
+  const nav=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+  // Reveal on scroll
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+  // WhatsApp enquiry
+  function enquire(product){
+    window.open(`https://wa.me/2348158719600?text=Hello%20Fancy%20Bathroom%20Concept%2C%20I%20am%20interested%20in%3A%20${encodeURIComponent(product)}%20.%20Please%20send%20me%20more%20info%20and%20pricing.`,'_blank');
+  }
+
+  // Form → WhatsApp
+  function handleForm(e){
+    e.preventDefault();
+    const f=e.target;
+    const name=f.querySelector('input[type=text]').value;
+    const phone=f.querySelector('input[type=tel]').value;
+    const product=f.querySelector('select').value||'General';
+    const msg=f.querySelector('textarea').value;
+    const text=`Hello Fancy Bathroom Concept!\n\nName: ${name}\nPhone: ${phone}\nInterest: ${product}\nMessage: ${msg}`;
+    window.open(`https://wa.me/2348158719600?text=${encodeURIComponent(text)}`,'_blank');
+  }
+
+  // Initialize
+  loadProducts();
+</script>
+</body>
+</html>
