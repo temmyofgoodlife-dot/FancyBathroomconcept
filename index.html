@@ -28,7 +28,7 @@
   .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--gold-dim); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); }
 
   /* Enhanced Navbar */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 60px; background: linear-gradient(to bottom, rgba(10,10,10,0.5), transparent); transition: padding 0.3s, background 0.3s; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 60px; background: linear-gradient(to bottom, rgba(10,10,10,0.7), rgba(10,10,10,0.3)); backdrop-filter: blur(10px); transition: all 0.3s; }
   nav.scrolled { background: rgba(10,10,10,0.96); backdrop-filter: blur(20px); padding: 18px 60px; border-bottom: 1px solid rgba(201,168,76,0.15); }
   .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 3px; color: var(--gold-light); text-transform: uppercase; text-decoration: none; }
@@ -39,7 +39,7 @@
   .nav-links a:hover { color: var(--gold-light); }
   .nav-links a:hover::after { width: 100%; }
   .nav-right { display: flex; align-items: center; gap: 20px; }
-  .nav-cta { background: transparent; border: 1px solid var(--gold-dim); color: var(--gold-light); padding: 10px 26px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; border-radius: 0; }
+  .nav-cta { background: transparent; border: 1px solid var(--gold-dim); color: var(--gold-light); padding: 10px 26px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
   .nav-cta:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
   .hamburger span { width: 24px; height: 2px; background: var(--gold-light); transition: 0.3s; }
@@ -48,17 +48,17 @@
   .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
   .hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 60px 80px; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 70%); }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%); }
   .hero-content { position: relative; z-index: 2; max-width: 680px; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.9s ease forwards 0.3s; }
   .hero-badge::before, .hero-badge::after { content: ''; height: 1px; background: var(--gold-dim); width: 30px; }
-  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 0.95; letter-spacing: -1px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s; }
+  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; line-height: 0.95; letter-spacing: -1px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.9s ease forwards 0.5s; }
   .hero-h1 em { font-style: italic; color: var(--gold-light); }
   .hero-sub { font-size: 14px; line-height: 1.8; color: var(--text-muted); letter-spacing: 0.5px; max-width: 440px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.9s ease forwards 0.7s; }
   .hero-actions { display: flex; gap: 20px; align-items: center; opacity: 0; animation: fadeUp 0.9s ease forwards 0.9s; }
-  .btn-primary { background: var(--gold); color: var(--dark); padding: 16px 40px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s; border-radius: 0; text-decoration: none; display: inline-block; }
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 16px 40px; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; cursor: pointer; border: none; transition: all 0.3s; }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,0.3); }
-  .btn-ghost { color: var(--light2); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.3s; }
+  .btn-ghost { color: var(--light2); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.3s; cursor: pointer; border: none; background: none; }
   .btn-ghost:hover { color: var(--gold-light); }
   .btn-ghost span { transition: transform 0.3s; font-size: 16px; }
   .btn-ghost:hover span { transform: translateX(5px); }
@@ -88,10 +88,9 @@
   .product-card:hover { background: var(--dark4); }
   .product-card:hover::before { opacity: 1; }
   .product-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-  .product-img-wrap { aspect-ratio: 1; overflow: hidden; margin-bottom: 28px; background: var(--dark2); position: relative; }
-  .product-card.featured .product-img-wrap { aspect-ratio: unset; height: 100%; min-height: 300px; margin-bottom: 0; }
-  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) contrast(1.05); transition: transform 0.6s ease, filter 0.4s; }
-  .product-card:hover .product-img-wrap img { transform: scale(1.04); filter: brightness(0.95) contrast(1.05); }
+  .product-placeholder { aspect-ratio: 1; overflow: hidden; margin-bottom: 28px; background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 100%); position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(201,168,76,0.2); }
+  .product-card.featured .product-placeholder { aspect-ratio: unset; height: 100%; min-height: 300px; margin-bottom: 0; }
+  .product-icon { font-size: 48px; color: var(--gold-dim); }
   .product-number { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--gold-dim); letter-spacing: 3px; margin-bottom: 10px; display: block; }
   .product-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; line-height: 1.2; margin-bottom: 12px; }
   .product-desc { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin-bottom: 24px; }
@@ -104,7 +103,7 @@
   .about-visual { position: relative; height: 480px; }
   .about-box { position: absolute; background: var(--dark3); border: 1px solid rgba(201,168,76,0.2); }
   .about-box:nth-child(1) { top:0; left:0; right:60px; bottom:60px; }
-  .about-box:nth-child(2) { top:50px; left:50px; right:0; bottom:0; background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03)); border-color: var(--gold-dim); display: flex; align-items: center; justify-content: center; }
+  .about-box:nth-child(2) { top:50px; left:50px; right:0; bottom:0; background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03)); border-color: var(--gold-dim); display: flex; align-items: center; justify-content: center; flex-direction: column; }
   .big-num { font-family: 'Cormorant Garamond', serif; font-size: 80px; font-weight: 300; color: var(--gold-light); line-height: 1; }
   .big-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
   .about-text p { font-size: 15px; line-height: 1.9; color: var(--text-muted); margin-bottom: 20px; }
@@ -128,12 +127,12 @@
   .contact-value { font-size: 16px; color: var(--light); }
   .contact-value a { color: var(--gold-light); text-decoration: none; transition: color 0.3s; }
   .contact-value a:hover { color: var(--gold); }
-  .whatsapp-btn { margin-top: 40px; display: inline-flex; align-items: center; gap: 14px; background: #25D366; color: white; padding: 18px 36px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.3s; border-radius: 0; text-decoration: none; }
+  .whatsapp-btn { margin-top: 40px; display: inline-flex; align-items: center; gap: 14px; background: #25D366; color: white; padding: 18px 36px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s; }
   .whatsapp-btn:hover { background: #1dbe58; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
   .form-group { margin-bottom: 28px; }
   .form-group label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 10px; }
-  .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--dark3); border: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(201,168,76,0.3); color: var(--light); padding: 12px; font-family: 'Jost', sans-serif; font-size: 13px; transition: border-color 0.3s; }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--dark3); border: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(201,168,76,0.3); color: var(--light); padding: 12px 16px; font-family: 'Jost', sans-serif; font-size: 14px; transition: border-color 0.3s; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); outline: none; }
   .form-group textarea { resize: none; height: 120px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
@@ -160,7 +159,7 @@
     .section { padding: 80px 24px; }
     .products-grid { grid-template-columns: 1fr; }
     .product-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-    .product-card.featured .product-img-wrap { min-height: 220px; height: 220px; margin-bottom: 28px; }
+    .product-card.featured .product-placeholder { min-height: 220px; height: 220px; margin-bottom: 28px; }
     .about-inner { grid-template-columns: 1fr; gap: 50px; }
     .about-visual { height: 300px; }
     .big-num { font-size: 56px; }
@@ -256,7 +255,7 @@
       <span class="sec-tag">Who We Are</span>
       <h2 class="sec-title">Onitsha's <em>Finest</em><br>Bath Destination</h2>
       <div class="sec-line"></div>
-      <p style="margin-top:32px;">Located at Shop A6, Prince of Peace Line, Bridge Head Market, Onitsha — Fancy Bathroom Concept brings globally-sourced, premium bathroom fittings to the heart of the city.</p>
+      <p style="margin-top:32px;">Located at Shop A6, Prince of Peace Line, Bridge Head Market, Onitsha — Fancy Bathroom Concept brings globally-sourced, premium bathroom fittings to the heart of Anambra State.</p>
       <p>From smart LED mirrors and touchless sensor faucets to full rainfall shower systems, we stock everything needed to transform a bathroom into a luxury retreat — at accessible prices.</p>
       <div class="about-features">
         <div class="af-item">
@@ -269,7 +268,7 @@
         </div>
         <div class="af-item">
           <div class="af-icon">◈</div>
-          <div><h4>Instant Response</h4><p>Message us on WhatsApp — get answers, prices and product photos in minutes.</p></div>
+          <div><h4>Instant Response</h4><p>Message us on WhatsApp — get answers, prices and product details in minutes.</p></div>
         </div>
       </div>
     </div>
@@ -307,7 +306,7 @@
         <span class="contact-value" style="color:var(--gold);">★★★★★ &nbsp; 4.9 / 5.0 &nbsp; Excellent</span>
       </div>
       <a href="https://wa.me/2348158719600?text=Hello%20Fancy%20Bathroom%20Concept%2C%20I%20am%20interested%20in%20your%20products." target="_blank" class="whatsapp-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-2.759 0-5.305 1.068-7.239 3.003-.52.52-.993 1.084-1.407 1.676H2.248l1.827-2.64c-.087-.107-.172-.216-.254-.325-1.654-2.159-2.059-5.153-1.028-7.84.485-1.258 1.248-2.344 2.248-3.154 2.935-2.426 7.337-2.652 10.522-.559l-1.627 2.36c-1.41-1.157-3.402-1.506-5.245-.513"></path></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.075-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.052 0-2.082.271-2.986.787l-.214.125-2.216-.581.592 2.167-.14.224c-.554.899-.847 1.938-.847 3.054 0 3.365 2.736 6.1 6.1 6.1 1.628 0 3.168-.633 4.322-1.782 1.155-1.149 1.79-2.678 1.79-4.322 0-3.365-2.736-6.1-6.1-6.1m5.904-3.973C14.847 1.102 12.594 0 10.307 0 5.334 0 1.259 4.074 1.259 9.048c0 1.595.418 3.15 1.208 4.519L1.129 23l5.02-1.31c1.329.708 2.823 1.082 4.358 1.082h.004c4.973 0 9.047-4.075 9.047-9.048 0-2.42-.944-4.693-2.655-6.405"/></svg>
         Chat on WhatsApp Now
       </a>
     </div>
@@ -356,51 +355,51 @@
 </footer>
 
 <script>
-  // Default products data (fallback)
+  // Default products data (fallback) - No images, with full descriptions
   let products = [
     {
       id: 1,
       number: '01 / Mirror',
-      name: 'Cloud-Shape LED Backlit Mirror',
-      description: 'Organic irregular silhouette with warm-white edge lighting. Touch-sensor on/off. Creates a dramatic vanity focal point in any bathroom or bedroom.',
-      tags: ['LED Backlit', 'Touch Sensor', 'Warm White'],
-      image: 'https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=700&q=80',
+      name: 'LED Smart Mirror with Touch Sensor',
+      description: 'Modern cloud-shaped LED backlit mirror with warm-white edge lighting and touch-sensor on/off control. Features anti-fog technology and adjustable brightness levels. Perfect for creating a dramatic vanity focal point in any bathroom or bedroom.',
+      tags: ['LED Backlit', 'Touch Sensor', 'Anti-Fog', 'Available'],
+      icon: '🪞',
       featured: true
     },
     {
       id: 2,
       number: '02 / Faucet',
-      name: 'Matte Black Waterfall Sensor Tap',
-      description: 'Touchless infrared sensor with flat-top waterfall flow. Matte black stainless finish — modern, hygienic and effortlessly stylish.',
-      tags: ['Auto Sensor', 'Matte Black'],
-      image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80',
+      description: 'Premium touchless infrared sensor waterfall faucet with flat-top cascading flow design. Constructed from matte black stainless steel for durability and modern aesthetics. Hygienic, water-efficient, and ideal for contemporary bathrooms. Easy installation with standard plumbing connections.',
+      tags: ['Auto Sensor', 'Matte Black', 'Stainless Steel', 'Available'],
+      icon: '🚰',
+      name: 'Matte Black Waterfall Sensor Faucet',
       featured: false
     },
     {
       id: 3,
       number: '03 / Shower',
       name: 'Chrome Rainfall Shower System',
-      description: 'Square overhead rain head, adjustable handheld spray, wall-mount mixer. Polished chrome — timeless luxury for your shower space.',
-      tags: ['Rain Head', 'Handheld', 'Chrome'],
-      image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80',
+      description: 'Complete rainfall shower system featuring a square overhead rain head with wide spray coverage, adjustable handheld spray wand for versatility, and wall-mounted mixing valve. Polished chrome finish provides timeless luxury and durability. Includes all mounting hardware for easy installation.',
+      tags: ['Rain Head', 'Handheld Spray', 'Chrome', 'Available'],
+      icon: '🚿',
       featured: false
     },
     {
       id: 4,
       number: '04 / Sink',
-      name: 'Workstation Kitchen Sink 7545B',
-      description: 'Gunmetal nano coating. Built-in chopping board, colander, and pull-out faucet included. Model 7545B — the complete kitchen upgrade.',
-      tags: ['Nano-coated', 'Model 7545B'],
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
+      name: 'Workstation Kitchen Sink Model 7545B',
+      description: 'Premium multi-function kitchen sink with gunmetal nano coating for superior scratch and stain resistance. Features built-in chopping board, integrated colander strainer, and includes a high-quality pull-out faucet. The complete kitchen upgrade solution with ample workspace and modern aesthetics.',
+      tags: ['Nano-coated', 'Model 7545B', 'Pull-out Faucet', 'Available'],
+      icon: '🧊',
       featured: false
     },
     {
       id: 5,
       number: '05 / Full Set',
       name: 'Complete Shower Installation Set',
-      description: 'Everything included — overhead panel, handheld head, mixer valve, 150cm shower hose and chrome support rods. Ready to install.',
-      tags: ['Full Kit', '150cm Hose'],
-      image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80',
+      description: 'Comprehensive shower system package with everything needed for a professional installation. Includes overhead rain shower panel, handheld shower head, mixing valve with temperature control, 150cm flexible shower hose, and chrome support rods. Ready to install with complete hardware included.',
+      tags: ['Full Kit', '150cm Hose', 'Chrome', 'Available'],
+      icon: '⛈️',
       featured: false
     }
   ];
@@ -426,8 +425,8 @@
       const card = document.createElement('div');
       card.className = `product-card ${product.featured ? 'featured' : ''} reveal`;
       card.innerHTML = `
-        <div class="product-img-wrap">
-          <img src="${product.image}" alt="${product.name}">
+        <div class="product-placeholder">
+          <div class="product-icon">${product.icon}</div>
         </div>
         <div class="product-info">
           <span class="product-number">${product.number}</span>
